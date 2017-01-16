@@ -2,16 +2,16 @@
   window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
   window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
 
-  const FRAME_RATE = 60
-  const PARTICLE_NUM = 2000
-  const RADIUS = Math.PI * 2
-  const CANVASWIDTH = 500
-  const CANVASHEIGHT = 150
-  const CANVASID = 'canvas'
+  var FRAME_RATE = 60
+  var PARTICLE_NUM = 2000
+  var RADIUS = Math.PI * 2
+  var CANVASWIDTH = 500
+  var CANVASHEIGHT = 150
+  var CANVASID = 'canvas'
 
-  let texts = ['蔚蓝星空下', '男孩独自坐望', '星海闪烁', '仿佛在问', '为什么你一个人', '我在等一个人', '一个女孩', '这个女孩', '真没什么好的', '性格很倔强', '脾气又不好', '还很强势', '但男孩觉得', '这都是表面', '在他的眼中', '女孩任性起来', '耍起混来的时候', '真的很可爱', '可是', '就是这样的她', '也非常的脆弱', '也有', '伤心难过的时候', '而男孩', '看着她', '想要做一千件事', '让她开心起来', '却总是放下', '已经攥紧的拳头', '空荡荡', '因为男孩知道', '女孩心中有个人', '那是一座女孩', '筑起的城堡', '男孩走不近', '只能呆呆望着', '其实他也知道', '这样很傻', '但是放下', '却做不到', '在城堡外', '继续等待', '男孩再次抬头', '望向星空', '嘿', '女孩', '我能成为', '你的星星吗', '小小的星光', '不过分炙热', '不会灼伤你', '让你耍赖', '给你依赖', '给你幸福', '等待着你', 'Always']
+  var texts = ['蔚蓝星空下', '男孩独自坐望', '星海闪烁', '仿佛在问', '为什么你一个人', '我在等一个人', '一个女孩', '这个女孩', '真没什么好的', '性格很倔强', '脾气又不好', '还很强势', '但男孩觉得', '这都是表面', '在他的眼中', '女孩任性起来', '耍起混来的时候', '真的很可爱', '可是', '就是这样的她', '也非常的脆弱', '也有', '伤心难过的时候', '而男孩', '看着她', '想要做一千件事', '让她开心起来', '却总是放下', '已经攥紧的拳头', '空荡荡', '因为男孩知道', '女孩心中有个人', '那是一座女孩', '筑起的城堡', '男孩走不近', '只能呆呆望着', '其实他也知道', '这样很傻', '但是放下', '却做不到', '在城堡外', '继续等待', '男孩再次抬头', '望向星空', '嘿', '女孩', '我能成为', '你的星星吗', '小小的星光', '不过分炙热', '不会灼伤你', '让你耍赖', '给你依赖', '给你幸福', '等待着你', 'Always']
 
-  let canvas,
+  var canvas,
     ctx,
     particles = [],
     quiver = true,
@@ -27,12 +27,12 @@
     ctx.font = textSize + 'px \'SimHei\', \'Avenir\', \'Helvetica Neue\', \'Arial\', \'sans-serif\''
     ctx.fillText(text, (CANVASWIDTH - ctx.measureText(text).width) * 0.5, CANVASHEIGHT * 0.5)
 
-    let imgData = ctx.getImageData(0, 0, CANVASWIDTH, CANVASHEIGHT)
+    var imgData = ctx.getImageData(0, 0, CANVASWIDTH, CANVASHEIGHT)
 
     ctx.clearRect(0, 0, CANVASWIDTH, CANVASHEIGHT)
 
-    for (let i = 0, l = particles.length; i < l; i++) {
-      let p = particles[i]
+    for (var i = 0, l = particles.length; i < l; i++) {
+      var p = particles[i]
       p.inText = false
     }
     particleText(imgData)
@@ -153,10 +153,9 @@
     draw()
   }
 
-  class Particle {
-    constructor (canvas) {
-      let spread = canvas.height
-      let size = Math.random() * 1.2
+  function Particle(canvas) {
+      var spread = canvas.height
+      var size = Math.random() * 1.2
       // 速度
       this.delta = 0.06
       // 现在的位置
@@ -180,8 +179,8 @@
       this.opacityTresh = 0.98
       this.fadingOut = true
       this.fadingIn = true
-    }
-    fadeIn () {
+  }
+   Particle.prototype.fadeIn = function () {
       this.fadingIn = this.opacity > this.opacityTresh ? false : true
       if (this.fadingIn) {
         this.opacity += this.fadeInRate
@@ -189,7 +188,7 @@
         this.opacity = 1
       }
     }
-    fadeOut () {
+    Particle.prototype.fadeOut  = function() {
       this.fadingOut = this.opacity < 0 ? false : true
       if (this.fadingOut) {
         this.opacity -= this.fadeOutRate
@@ -200,14 +199,14 @@
         this.opacity = 0
       }
     }
-    draw (ctx) {
+    Particle.prototype.draw = function(ctx) {
       ctx.fillStyle = 'rgba(226,225,142, ' + this.opacity + ')'
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.size, 0, RADIUS, true)
       ctx.closePath()
       ctx.fill()
     }
-  }
+  
 
   // setTimeout(() => {
     init()  
