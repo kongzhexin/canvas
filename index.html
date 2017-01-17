@@ -12,7 +12,7 @@
     
   </head>
   <body>
-    <div class="container">
+    <div id="container" class="container">
       <div class="content">
         <canvas id="universe"></canvas>
         <canvas id="canvas"></canvas>
@@ -127,12 +127,14 @@
         </div>
       </div>
     </div>
-    <!--<div>一二三四五1</div>-->
-    <a href=""><img class="github" src="img/github.png"></a>
-    
-    <!-- build:js scripts/main.js -->
+    <!--<div  id="test" style ="width: 500px;height: 500px">一二三四五1</div>-->
+    <img id="myMusic" class="music" src="img/github.png">
+    <video id="myVideo" loop  autoplay src="http://om5.alicdn.com/826/2110169826/2102410057/1792667092_1477020585425.mp3?auth_key=1b7fa5b7e9da7f4d2d4d71fde4e20866-1485226800-0-null">
+      
+    </video>
+    <script src="js/hammer.js"></script>
     <script src="js/universe.js"></script>
     <script src="js/main.js"></script>
-    <!-- endbuild -->
+   
   </body>
 </html>
