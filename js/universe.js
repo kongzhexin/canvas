@@ -151,18 +151,11 @@ function windowResizeHandler() {
 //音频部分
 var objVideo =document.getElementById("myVideo");
 document.getElementById("myMusic").addEventListener('click',function(){
-  objVideo.paused===false ?objVideo.pause(): objVideo.play();
-});
-
-//手势部分
- //创建一个新的hammer对象并且在初始化时指定要处理的dom元素
-  var mc = new Hammer(document.getElementById("container"));
-  //添加事件
-  // hammertime.on("swipeleft", function (e) {
-      
-  //     //控制台输出
-  //     console.log(e);
-  // });
-  mc.on("panleft panright  tap press", function(ev) {
-    console.log(ev.type +" gesture detected.");
+  if(objVideo.paused===false) {
+    objVideo.pause();
+    this.src = "img/music_pause.png"
+  }else{
+    objVideo.play();
+     this.src = "img/music_play.png"
+  }
 });
