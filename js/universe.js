@@ -159,3 +159,8 @@ document.getElementById("myMusic").addEventListener('click',function(){
      this.src = "img/music_play.png"
   }
 });
+
+//
+document.getElementById("mySlime").addEventListener('click',function(){
+  document.getElementById("myMask").style.display = "none";
+})

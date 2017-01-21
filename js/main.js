@@ -10,7 +10,8 @@
   var CANVASWIDTH =  canvas.width
   var CANVASHEIGHT = canvas.height
 
-  var texts = ['蔚蓝星空下', '给你依赖', '给你幸福',  '新年快乐']
+  var texts = ['点我有惊喜↓↓','亲爱的小月','我们相恋两年','有欢笑与泪水','快乐','如流星',' 滑过心间','如漫天繁星',
+              '夜夜伴你左右','给你依赖','坏蛋，在此祝','亲爱的','越来越漂亮','越来越贤惠','越来越聪明','越来越幸福','最后','领红包继续滑','点顶部QQ']
 
   var canvas,
     ctx,
@@ -126,6 +127,9 @@
         textIndex++
         return
       }
+       if (textIndex === 0) {
+        document.getElementById("myMask").style.display ="block";
+      }
       text = texts[textIndex]
       console.log(textIndex)
     });
@@ -138,15 +142,15 @@
       text = texts[textIndex]
       console.log(textIndex)
     });
-    // document.addEventListener('touchstart', function (e) {
-    //   textIndex++
-    //   if (textIndex >= texts.length) {
-    //     textIndex--
-    //     return
-    //   }
-    //   text = texts[textIndex]
-    //   console.log(textIndex)
-    // }, false)
+    document.getElementById("mySlime").addEventListener('click', function (e) {
+      textIndex++
+      if (textIndex >= texts.length) {
+        textIndex--
+        return
+      }
+      text = texts[textIndex]
+      console.log(textIndex)
+    }, false)
   }
 
   function init () {
